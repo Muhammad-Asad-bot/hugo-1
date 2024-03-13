@@ -43,6 +43,11 @@
   <link rel="stylesheet" href="{{- .Site.Params.assets.custom_css | absURL -}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script type="text/javascript" src="{{ .Site.Params.assets.custom_js | absURL }}"></script>
-
-
+  <script src="https://cdn.growthbook.io/growthbook.js"></script>
+  <script>
+    const growthbook = new GrowthBook({
+      apiKey: "https://cdn.growthbook.io/api/features/sdk-DKVW3cmfoB7ba9M", // Replace YOUR_API_KEY with your actual GrowthBook project API key
+      // You can add other configuration options here as needed
+    });
+  </script>
 </head>
