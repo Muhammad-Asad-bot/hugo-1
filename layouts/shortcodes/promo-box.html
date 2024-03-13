@@ -1,0 +1,67 @@
+<!-- layouts/shortcodes/promo-box.html -->
+
+<div class="promo-box">
+    <div class="promo-header">
+      <h2 style="margin-bottom: 1% !important; font-size: 20px;">UPDATE: NUR HEUTE </h2>
+    </div>
+    <div class="promo-content">
+      <h2>20% RABATT auf LifeVac!</h2>
+      
+      <!-- Define your German day names somewhere in your template or data files -->
+      {{ $days := dict "Sunday" "Sonntag" "Monday" "Montag" "Tuesday" "Dienstag" "Wednesday" "Mittwoch" "Thursday" "Donnerstag" "Friday" "Freitag" "Saturday" "Samstag" }}
+      {{ $months := dict "January" "Januar" "February" "Februar" "March" "März" "April" "April" "May" "Mai" "June" "Juni" "July" "Juli" "August" "August" "September" "September" "October" "Oktober" "November" "November" "December" "Dezember" }}
+
+      <!-- Use Hugo's dateFormat along with your custom day mapping -->
+      <p class="offer-details">Angebot endet am {{ index $days (now.Format "Monday") }} {{ now.Format "2." }} {{  index $months (now.Format "January") }}, um 23:59 Uhr.</p>
+    </div>
+    
+  </div>
+  <div class="promo-button-container">
+    <a href="#" class="promo-button" style="color: white !important">{{ .Get "text" | default "Zum Angebot" }}</a>
+  </div>
+  <style>
+    .promo-box {
+      border-top: 6px solid #0056b3;
+      border-radius: 5px;
+      padding: 20px;
+      background-color: #e9eff3;
+      max-width: 800px;
+      margin: 20px auto;
+      font-family: Arial, sans-serif;
+      text-align: center; /* Center the text */
+    }
+    .promo-header {
+      /* background-color: #007bff; */
+      color: rgb(21, 19, 19);
+      /* padding: 10px; */
+      margin-bottom: 2px;
+      border-radius: 5px 5px 0 0;
+    }
+    .promo-content h2 {
+      color: rgba(204, 86, 86, 0.911);
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .offer-details {
+      color: #333333;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .promo-button-container {
+        display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px; /* Adjust as needed */
+    }
+    .promo-button {
+      background-color: #0056b3;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block; /* To allow for padding and proper centering */
+      font-size: 18px;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow for depth */
+    }
+  </style>
+  

@@ -1,0 +1,44 @@
+{{ define "main" }}
+
+<div class="container">
+  <div class="row">
+    <div class="col col-12 col-d-10 push-d-1 col-m-12 push-m-0">
+      <div class="page-head">
+        <h1 class="page-head__title">{{ .Title }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- begin page -->
+<article class="page fadein">
+  <div class="container">
+    <div class="row">
+      {{ if .Params.image }}
+      <div class="col col-12 col-d-10 push-d-1 col-m-12 push-m-0">
+        <div class="image-box">
+          <div class="page-image" style="background-image: url('{{ .Params.Image | absURL }}')" aria-label="{{ .Title }}"></div>
+        </div>
+      </div>
+      {{ end }}
+      <div class="col col-8 col-d-10 push-d-1 push-2 col-m-12 push-m-0">
+        <div class="page__content">
+          <div class="form-box">
+
+            <div class="contact-head">
+              {{ if .Content }}
+                <div class="page-description">{{ .Content }}</div>
+              {{ end }}
+            </div>
+
+            <script type="text/javascript" src="https://forms.leadgenapp.io/js/lf.min.js/2d763ac3-631c-4726-a87b-60632e54c9d7" async></script><div id="leadgen-form-wrap-2d763ac3-631c-4726-a87b-60632e54c9d7" style="display:block;border:0;width:100%;max-width:100%;margin:0 auto;"><leadgen-form-2d763ac3-631c-4726-a87b-60632e54c9d7></leadgen-form-2d763ac3-631c-4726-a87b-60632e54c9d7></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+<!-- end page -->
+
+{{ end }}

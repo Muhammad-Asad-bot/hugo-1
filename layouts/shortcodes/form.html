@@ -1,0 +1,186 @@
+<form id="regForm" action="/">
+    {{ range $.Page.Params.form.steps }}
+        <div class="tab">
+            <h3 class="step-name">{{ .name }}</h3>
+            {{ range .inputs }}
+              <p>
+                <label>
+                  {{- if (eq .type "select") }}
+                    {{ .label }}
+                    {{- if not .optional }}
+                      <span class="mandatory-icon">*</span>
+                    {{- end -}}
+                    <select name="{{ .name }}">
+                      {{ range .options }}
+                      <option value="{{ .value }}">{{ .label }}</option>
+                      {{ end }}
+                    </select>
+                  {{- else if (eq .type "checkbox") }}
+                    <input 
+                      type="{{ .type }}"
+                      name="{{ .name }}"
+                      value="{{ .value }}"
+                      oninput="clearClassNames(this)"
+                      data-optional="{{ .optional }}"
+                    >
+                    {{ .label }}
+                    {{- if not .optional }}
+                      <span class="mandatory-icon">*</span>
+                    {{- end -}}
+                  {{- else }}
+                    {{ .label }}
+                    {{- if not .optional }}
+                      <span class="mandatory-icon">*</span>
+                    {{- end -}}
+                    <input 
+                      type="{{ .type }}"
+                      name="{{ .name }}"
+                      placeholder="{{ .placeholder }}"
+                      oninput="this.className=''"
+                      data-optional="{{ .optional }}"
+                    >
+                  {{- end -}}
+                </label>
+              </p>
+            {{ end }}
+        </div>
+    {{ end }}
+    <div style="overflow:auto;">
+        <div class="mandatory-msg" style="float:left;">* mandatory field</div>
+        <div style="float:right;">
+            <button type="button" id="prevBtn" class="formBtn" onclick="nextPrev(-1)">Zurück</button>
+            <button type="button" id="nextBtn" class="formBtn" onclick="nextBtnClick()">
+                <i id="loadingIcon" class="fa fa-circle-o-notch fa-spin"></i>
+                <span id="btnText">Weiter</span>
+            </button>
+        </div>
+    </div>
+    
+    <div id="error-msg" style="float:right;" >Something went wrong. Please try again.</div>
+
+    <!-- Circles which indicates the steps of the form: -->
+    <div style="text-align:center;margin-top:40px;">
+        {{ range $.Page.Params.form.steps }}
+            <span class="step"></span>
+        {{ end }}
+    </div>
+
+    <input type="hidden" id="formName" name="formName" value="{{ $.Page.Params.form.name }}">
+</form>
+<input type="hidden" id="redirect" value="{{ $.Page.Params.form.redirect }}">
+
+<script>
+//FORM
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
+
+function clearClassNames(ele) {
+  ele.classList.remove("invalid")
+  ele.parentElement.classList.remove("invalid")
+}
+
+function nextBtnClick() {
+    const tabs = document.getElementsByClassName("tab");
+    if(currentTab >= tabs.length - 1){
+        validateForm() && formSubmit()
+    } else {
+        nextPrev(1)
+    }
+}
+
+function showTab(n) {
+  // This function will display the specified tab of the form ...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  // ... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  const btn = document.getElementById("btnText")
+  btn.removeAttribute('onclick')
+  if (n == (x.length - 1)) {
+    btn.innerHTML = "Senden";
+  } else {
+    btn.innerHTML = "Weiter";
+  }
+  // ... and run a function that displays the correct step indicator:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+    document.getElementById("error-msg").style.display = "none";
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    const isOptional = y[i].dataset.optional;
+    if (!isOptional && (y[i].value == "" || (y[i].type === "checkbox" && !y[i].checked))) {
+      // add an "invalid" class to the field:
+      y[i].classList.add("invalid");
+      if(y[i].type === "checkbox") {
+        y[i].parentElement.classList.add("invalid")
+      }
+      // and set the current valid status to false:
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class to the current step:
+  x[n].className += " active";
+}
+async function formSubmit() {
+    document.getElementById("error-msg").style.display = "none";
+    document.getElementById("loadingIcon").style.display = "inline-block";
+    document.getElementById("prevBtn").disabled = true;
+    document.getElementById("nextBtn").disabled = true;
+    const form = document.getElementById("regForm")
+    const formData = new FormData(form)
+    formData.append('clickid', getCookie('clickid'))
+    formData.append('ip', window.userIP)
+
+    // http://localhost:5001/rechteuhu/europe-west1/loadLead
+    // https://europe-west1-rechteuhu.cloudfunctions.net/loadLead
+    try {
+        await fetch("https://europe-west1-rechteuhu.cloudfunctions.net/loadLead", {
+            method: "POST",
+            body: JSON.stringify(Object.fromEntries(formData)),
+            mode: "no-cors"
+        })
+        window.location = document.getElementById('redirect').value
+    } catch {
+        document.getElementById("error-msg").style.display = "block";
+        document.getElementById("loadingIcon").style.display = "none";
+        document.getElementById("prevBtn").disabled = false;
+        document.getElementById("nextBtn").disabled = false;
+    }
+    return false;
+}
+</script>

@@ -1,0 +1,86 @@
+<style>
+    /* Accordion Styles */
+    .accordion-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f7f7f7;
+    }
+    .accordion-section {
+      width: 100%;
+      max-width: 600px;
+    }
+    .accordion {
+      background-color: #eee;
+      color: #444;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 18px;
+      transition: 0.4s;
+    }
+    .accordion:hover, .active {
+      background-color: #ccc;
+    }
+    .panel {
+      padding: 0 18px;
+      background-color: white;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      border-bottom: 1px solid #ccc;
+    }
+    .panel p {
+      padding: 18px 0;
+      margin: 0;
+      font-size: 16px;
+    }
+    .caret-icon {
+      float: right;
+      transition: transform 0.2s;
+    }
+    .rotate {
+      transform: rotate(180deg);
+    }
+    </style>
+    
+    <div class="accordion-container">
+      <div class="accordion-section">
+        <h1>{{ .Get "title" }}</h1>
+        {{ $dataPath := .Get "dataFile" }}
+        {{ $faqs := index .Site.Data (index (split $dataPath "/") 0) (index (split $dataPath "/") 1) }}
+        {{ range $faqs }}
+        <button class="accordion">{{ .question }}<span class="caret-icon">▼</span></button>
+        <div class="panel">
+          <p>{{ .answer }}</p>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+    
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var icon = this.getElementsByClassName("caret-icon")[0];
+          icon.classList.toggle("rotate");
+          var panel = this.nextElementSibling;
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          }
+        });
+      }
+    });
+    </script>
+    

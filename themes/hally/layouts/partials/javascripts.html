@@ -1,0 +1,18 @@
+{{ $script := resources.Get "js/scripts.js" }}
+{{ $commonJs := resources.Get "js/common.js" }}
+
+{{ if .Site.IsServer }}
+<script src="{{ $script.Permalink }}"></script>
+<script src="{{ $commonJs.Permalink }}"></script>
+{{ else }}
+<script src="{{ ($script | minify | fingerprint).RelPermalink }}"></script>
+<script src="{{ ($commonJs | minify | fingerprint).RelPermalink }}"></script>
+{{ end }}
+
+<!-- AB Testing Tool -->
+
+<script async
+  data-api-host="https://cdn.growthbook.io"
+  data-client-key="sdk-EMP2DAHLN5lb2g9"
+  src="https://cdn.jsdelivr.net/npm/@growthbook/growthbook/dist/bundles/auto.min.js"
+></script>

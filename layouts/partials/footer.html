@@ -1,0 +1,39 @@
+{{ with $.Page.Params.ctaBar }}
+  {{ range . }}
+    <a href="{{ .link }}"><div class="cta-bar" style="overflow: hidden; background-color: #25ae4e; position: fixed; bottom: 0; width: 100%; color: #fff; text-align: center; font-size: 20px; padding: 10px; font-weight: 600;">{{ .text }}</div></a>
+  {{ end }}
+{{ end }}
+
+
+
+{{ if eq .Params.footerwidgets false }}
+{{ else }}
+  <!-- begin footer-widgets -->
+  <section class="footer-widgets">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12 col-d-10 push-d-1 col-m-12 push-m-0">
+          <div class="widget-box">
+            <div class="row">
+              {{ partial "footer-widgets/widget-info.html" . }}
+              {{ partial "footer-widgets/widget-recent-posts.html" . }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end footer-widgets -->
+{{ end }}
+
+{{ with $.Page.Params.germany }}
+<div style="padding-bottom: 20px; color: gray; font-size: 12px;">
+  <center>
+    <a href="/page/impressum" style="color: gray;">Impressum</a> & <a href="/page/datenschutz" style="color: gray;">Datenschutz</a>
+  </center>
+</div>
+{{ end }}
+
+{{ with $.Page.Params.ctaBar }}
+<div style="padding-bottom: 60px;"></div>
+{{ end }}

@@ -1,0 +1,19 @@
+<div class="user-rating-container">
+  {{  range $.Page.Params.rates }}
+    <div class="rating">
+      <div class="rating-head">
+        <div class="rating-name">
+          {{ .name }}
+        </div>
+        <div class="rating-stars-container">
+          {{ range seq .stars }}
+            <span class="rating-star">★</span>
+          {{ end }}
+        </div>
+      </div>
+      <div class="rating-body">
+        {{ .text }}
+      </div>
+    </div>
+  {{ end }}
+</div>

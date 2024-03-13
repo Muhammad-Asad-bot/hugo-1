@@ -1,0 +1,37 @@
+{
+    "reviews": [
+      {
+        "title": "Reviews",
+        "averageRating": "4.8",
+        "stars": "★★★★☆",
+        "reviewCount": "31",
+        "reviewDetails": [
+          {
+            "imageSrc": "https://placehold.co/400",
+            "reviewerName": "Samantha W.",
+            "reviewerStars": "★★★★★",
+            "reviewText": "Because of this device my daughter is alive! Thank god! Thank you again for making such a wonderful device - and ultimately saving my daughter's life."
+          },
+          {
+            "imageSrc": "https://placehold.co/400",
+            "reviewerName": "Kate L.",
+            "reviewerStars": "★★★★★",
+            "reviewText": "I bought this item a few years ago after my daughter did a swallow study and we found out she can't swallow well at all and had to switch her to tube feeds. My daughter is cognitively and physically disabled. Today, my other daughter left her hot dog out and my disabled daughter must have gotten into it we didn't see it happen, we only saw her choking. We were able to get the hot dog out within seconds. This device saved my daughter today."
+          },
+          {
+            "imageSrc": "https://placehold.co/400",
+            "reviewerName": "Muhammad A.",
+            "reviewerStars": "★★★★★",
+            "reviewText": "We keep a LifeVac in our house, our car, and her diaper bag at all times. I am eternally grateful for this device and its role in helping to save our little girl!"
+          },
+          {
+            "imageSrc": "https://placehold.co/400",
+            "reviewerName": "Muhammad A.",
+            "reviewerStars": "★★★★★",
+            "reviewText": "We keep a LifeVac in our house, our car, and her diaper bag at all times. I am eternally grateful for this device and its role in helping to save our little girl!"
+          }
+        ]
+      }
+    ]
+  }
+  

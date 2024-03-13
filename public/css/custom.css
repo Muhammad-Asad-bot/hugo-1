@@ -1,0 +1,378 @@
+img {
+  border-radius:  5px;
+}
+
+.post__meta {
+  display: none !important;
+}
+
+.post-image {
+  border-radius:  5px;
+  max-height: 460px;
+}
+
+.gallery-col-2 {
+  grid-template-columns: repeat(2,auto);
+}
+
+@media only screen and (max-width: 600px) {
+  .gallery-col-2 {
+  grid-template-columns: repeat(1,auto);
+  }
+}
+
+.sharethis-inline-share-buttons {
+  padding-bottom: 10px;
+}
+
+/* expand */
+#expand-button {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  
+    border: 2px solid black;
+    border-radius: 3px;
+    background-color: transparent;
+    color: black;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  
+  #expand-button:hover, #expand-button:active, #expand-button:focus {
+      background-color: transparent;
+  }
+  
+  #special-text {
+    position: relative;
+    max-height: 800px;
+    overflow: hidden;
+    transition: max-height 1s ease;
+    
+  }
+  #special-text.expanded {
+  max-height: 400vh;
+  }
+  
+  #special-text:not(.expanded)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  }
+
+/* Header */
+
+.header {
+  box-shadow: 0px 2px 20px #c9c9c9;
+}
+
+@media only screen and (max-width: 600px) {
+  .menu {
+    display: none;
+  }
+}
+
+/* FORM */
+/* Style the form */
+#regForm {
+  background-color: #ffffff;
+  margin: 0 auto;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+
+/* Style the input fields */
+input:not([type='checkbox']), select {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+
+.mandatory-msg {
+  font-size: 11px;
+  color: #aaaaaa;
+}
+
+.mandatory-icon {
+  font-size: 14px;
+}
+
+label.invalid {
+  color: crimson;
+  text-decoration: underline;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+
+.formBtn {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+.formBtn#prevBtn {
+  background-color: #bbbbbb;
+}
+
+.formBtn:disabled{
+  opacity: 0.4;
+  cursor: default;
+}
+
+#loadingIcon {
+  margin-right: 8px;
+  display: none;
+}
+
+#error-msg {
+  font-size: 14px;
+  font-family: Raleway;
+  color: crimson;
+  padding-right: 12px;
+  display: none;
+}
+
+.post-title {
+    font-size: 2em;
+}
+
+.post-content h2 {
+    font-size: 1.4em;
+}
+
+.post-content h3 {
+    font-size: 1.2em;
+}
+
+/* user rating */
+.user-rating-container{
+
+}
+.rating{
+  border: 1px solid #d6d6d6;
+  background-color: #f3f3f3;
+  padding: 15px;
+  margin: 12px 0;
+}
+.rating-head{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.rating-name{
+  font-size: 18px;
+  font-weight: bold;
+  color: green;
+}
+.rating-stars-container{
+  display: flex;
+  flex-direction: row-reverse;
+}
+.rating-star {
+  color: #f7ea00
+}
+.rating-body{
+  font-style: italic;
+}
+
+
+/* sub-title */
+
+.post-subtitle {
+    padding-top: 10px;
+    color: darkgray;
+}
+
+/* attention */
+.update-box{
+  padding: 15px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    margin: 40px 0 30px;
+}
+
+.update-title{
+  background-color: #459ef7;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.update-text{
+  background-color: #f4f4c3;
+  padding: 10px;
+}
+
+.alternate-b {
+  background-color: #fffde7;
+  padding: 20px;
+  margin: -20px;
+  border-radius: 10px;
+  }
+
+
+.product-container{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 600px;
+    background: #fff;
+    padding: 20px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    -webkit-box-shadow
+}
+
+.product-container .imgBx{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    background: #eeeeee;
+}
+
+.product-container .imgBx img{
+    position: initial;
+    max-width: 700px;
+    transform: rotate(0deg);
+    left: -50px;
+}
+
+.product-container .details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 40px;
+}
+
+.product-container .details h2{
+    margin: 0;
+    padding: 0;
+    font-size: 2.2em;
+    line-height: 1em;
+    color: #444;
+}
+
+.product-container .details h2 span{
+    font-size: 0.4em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+}
+
+.product-container .details p{
+    max-width: 85%;
+    margin-left: 5%;
+    color: #333;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.product-container .details h3{
+    margin: 0;
+    padding: 0;
+    font-size: 2.5em;
+    color: #a2a2a2;
+    float: left;
+}
+
+.product-container .details button{
+    background: #26ad4e;
+    color: #fff;
+    border: none;
+    box-shadow: none;
+    padding: 15px 20px;
+    margin-top: 20px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+@media (max-width: 1080px){
+    .product-container{
+        height: auto;
+    }
+    .product-container .imgBx{
+        padding: 40px;
+        box-sizing: border-box;
+        width: 100% !important;
+        height: auto;
+        text-align: center;
+        overflow: hidden;
+    }
+    .product-container .imgBx img{
+        left: initial;
+        max-width: 100%;
+        transform: rotate(0deg);
+    }
+    .details{
+        width: 100% !important;
+        height: auto;
+        padding: 20px !important;
+    }
+    .product-container .details p{
+        max-width: 100%;
+        margin-left: 0;
+    }
+}
+
+.post__content a {
+  color: #459ef7 !important;
+}

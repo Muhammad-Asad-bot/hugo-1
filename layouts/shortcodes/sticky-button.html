@@ -1,0 +1,58 @@
+<!-- layouts/shortcodes/stickyButton.html -->
+<div class="sticky-button" id="stickyBtn">
+    <a href="{{ .Get "link" }}" aria-label="{{ .Get "text" }}">
+      <button>{{ .Get "text" }}</button>
+    </a>
+  </div>
+  
+  <style>
+    .sticky-button {
+      display: none; /* Initially hide the button */
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 99;
+    }
+  
+    .sticky-button button {
+      padding: 20px 40px;
+      background-color: #f76b1a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 1;
+      position: relative; /* Needed to position the triangle relative to the button */
+      overflow: hidden; /* Ensures the pseudo-element does not extend outside the button */
+    }
+  
+    .sticky-button button:after {
+      content: '  ';
+      position: absolute;
+      right: 20px; /* Position the triangle to the right of the text */
+      top: 50%;
+      border-left: 13px solid white;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      transform: translateY(-50%) translateX(5px); /* Center the triangle vertically and move it half its width to the right */
+    }
+  
+    .sticky-button button:hover {
+      background-color: #c5591a;
+    }
+  </style>
+  
+  <script>
+  window.onscroll = function() {scrollFunction()};
+  function scrollFunction() {
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+      document.getElementById("stickyBtn").style.display = "block";
+    } else {
+      document.getElementById("stickyBtn").style.display = "none";
+    }
+  }
+  </script>
+  

@@ -1,0 +1,81 @@
+<!-- layouts/shortcodes/valentinesSale.html -->
+<div class="sale-container" style="
+    font-family: Arial, sans-serif;
+    max-width: 742px;
+    margin: 100px auto;
+    padding: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: dashed 2px #ddd;
+    border-radius: 15px;
+    background: #fff;
+    position: relative;">
+    <div class="sale-header" style="
+        background: #ccf281;
+        padding: 5px 20px;
+        display: inline-block;
+        border-radius: 20px;
+        font-size: 16px;
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;">❤️ VALENTINE'S DAY SALE! 🎈</div>
+    <div class="ty">
+        <div class="sale-content" style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;">
+            <div class="product-image" style="
+                flex: 0 0 auto;
+                width: 50%;">
+                <!-- Use Hugo Params for dynamic image path -->
+                <img src="{{ .Get "imagePath" }}" alt="Sale Image" style="max-width: 100%; height: auto; border-radius: 10px;"/>
+            </div>
+
+            <div class="details" style="
+                flex: 1;
+                padding-left: 20px;
+                text-align: center;">
+                <div class="sale-badge" style="
+                    font-weight: bold;
+                    font-size: medium;
+                    margin-top: 10px;">
+                    FREE GIFTS WITH YOUR ORDER
+                </div>
+
+                <h2><span style="color: #3e3687;">UP TO 59% OFF</span> FOR A LIMITED TIME ONLY!</h2>
+                <p>This limited-time deal is in high demand and stock keeps selling out.</p>
+
+                <!-- Button text and deal ending time are now variables -->
+                <a href="#" class="sale-button" style="
+                    background: #2b2553;
+                    color: white;
+                    padding: 20px 20px;
+                    width: 50%;
+                    text-decoration: none;
+                    display: inline-block;
+                    border-radius: 2px;
+                    font-size: 18px;
+                    font-weight: bold;">{{ .Get "buttonText" }}</a>
+
+                <div class="sale-timer" style="
+                    margin: 10px 0;">
+                    <strong> DEAL ENDING IN: {{ .Get "dealEndingTime" }} </strong>
+                </div>
+
+                <div>
+                    <span class="high-risk" style="
+                        background-color: #fff7ed;
+                        padding: 10px 20px;
+                        border-radius: 5px;">Sell-Out Risk: <span style="color: red;">High</span> |
+                        <strong>FREE</strong> shipping </span>
+                </div>
+
+                <div class="money-back" style="
+                    margin: 10px 0;">
+                    Try it today with a 30-Day Money Back Guarantee!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
